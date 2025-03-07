@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ESP32 Input Form</title>
+    </head>
+    <body>
+        <h1>LED Control Panel</h1>
+        <p>Apply options if needed. Choose one of the ways to adjust the color of the LED strip. Hex values have the prefix "0x" or "#".</p>
+
+        <!-- Options -->
+        <h2>Options</h2>
+        <h3>Color Correction</h3>
+        <p>Enter correction values for each color channel (0-255).</p>
+        <form action="/color-correction" method="POST">
+            <label for="correctionRed">Red:</label>
+            <input type="text" id="correctionRed" name="correctionRed" value="%CORR_RED%">
+            <br>
+            <label for="correctionGreen">Green:</label>
+            <input type="text" id="correctionGreen" name="correctionGreen" value="%CORR_GREEN%">
+            <br>
+            <label for="correctionBlue">Blue:</label>
+            <input type="text" id="correctionBlue" name="correctionBlue" value="%CORR_BLUE%">
+            <br><br>
+            <input type="submit" value="Apply Color Correction">
+        </form>
+
+        <!-- Line Separator -->
+        <br>
+        <hr>
+
+        <!-- Section: Solid Color -->
+        <h2>Solid Color</h2>
+        <p>Enter a single color value (integer or hex) to set all LEDs to the same color.</p>
+        <form action="/solid" method="POST">
+            <label for="solidColor">Color value:</label>
+            <input type="text" id="solidColor" name="solidColor">
+            <br><br>
+            <input type="submit" value="Set Color">
+        </form>
+
+        <!-- Line Separator -->
+        <br>
+        <hr>
+
+        <!-- Section: Gradient -->
+        <h2>Gradient</h2>
+        <p>Enter number of LEDs per segment, and provide 3 gradient values (integer or hex).</p>
+        <form action="/gradient" method="POST">
+            <label for="ledsPerSegment">LEDs per segment:</label>
+            <input type="text" id="gradientLedsPerSegment" name="gradientLedsPerSegment">
+            <br>
+            <label for="startColor">Start color:</label>
+            <input type="text" id="gradientStartColor" name="gradientStartColor">
+            <br>
+            <label for="middleColor">Middle color:</label>
+            <input type="text" id="gradientMiddleColor" name="gradientMiddleColor">
+            <br>
+            <label for="endColor">End color:</label>
+            <input type="text" id="gradientEndColor" name="gradientEndColor">
+            <br><br>
+            <input type="submit" value="Set Gradient">
+        </form>
+
+        <!-- Line Separator -->
+        <br>
+        <hr>
+
+        <!-- Existing Section: LED Color Control -->
+        <h2>Individual Pixel Color Control</h2>
+        <p>Enter comma-separated values (integer or hex, e.g. 0x12FA8C). One value per LED.</p>
+        <form action="/pixels" method="POST">
+            <label for="pixelValues">LED values:</label><br>
+            <textarea id="pixelValues" name="pixelValues" style="width: 80%; height: 100px;"></textarea>
+            <br><br>
+            <input type="submit" value="Set Pixels">
+        </form>
+    </body>
+</html>
